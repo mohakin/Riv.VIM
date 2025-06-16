@@ -1,0 +1,8 @@
+std = "lua51"
+
+[globals]
+vim = true
+
+[rules]
+shadowing = "allow"
+global_usage = "allow"
