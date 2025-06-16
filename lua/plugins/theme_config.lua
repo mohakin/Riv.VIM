@@ -12,6 +12,6 @@ return {
 		})
 
 		-- Set the colorscheme
-		vim.cmd("colorscheme kanagawa-dragon")
+		vim.cmd("colorscheme kanagawa-wave")
 	end,
 }
