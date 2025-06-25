@@ -23,6 +23,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '⏟' }
 vim.opt.splitbelow = true -- Split horizontally
 vim.opt.splitright = true -- Split vertically
 -- fun options
+vim.opt.columns = 120 -- Sets the character width to 120 characters
 vim.opt.signcolumn = "yes"
 vim.g.have_nerd_font = true
 vim.opt.undofile = true -- Ass saver 9000
