@@ -1,7 +1,7 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	lazy = true,
-	event = "UIEnter",
+	event = 'VeryLazy',
+    --event = "UIEnter",
 	opts = function()
 		-- Clock
 		local function clock()
@@ -58,9 +58,9 @@ return {
 				lualine_b = { "branch", "diff" },
 				lualine_c = { "filename" },
 				lualine_x = {
-					{ lsp_clients, icon = " LSP:" },
-					{ lint_providers, icon = " Lint:" },
-					{ format_providers, icon = " Fmt:" },
+					lsp_clients,
+					lint_providers,
+					format_providers,
 					clock,
 					"filetype",
 				},
