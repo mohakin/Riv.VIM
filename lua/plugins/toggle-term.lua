@@ -1,5 +1,6 @@
 return {
   "akinsho/toggleterm.nvim",
+  event = "VeryLazy", -- Load this plugin when Neovim is idle
   version = "*", -- or pin to a specific version
   opts = {
     -- Hitting Esc in a terminal window will send the sequence to the terminal

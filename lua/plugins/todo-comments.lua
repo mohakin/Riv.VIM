@@ -2,6 +2,7 @@ return
 {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    event = "VeryLazy",
     opts =
     {
         signs = true, -- show icons in the signs column

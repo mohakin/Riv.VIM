@@ -7,6 +7,7 @@ return {
       "mfussenegger/nvim-dap-python",
       "theHamsta/nvim-dap-virtual-text",
     },
+    event = "VeryLazy",
     config = function()
       local dap        = require("dap")
       local dapui      = require("dapui")
