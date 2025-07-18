@@ -4,6 +4,8 @@ return {
   build = ":Copilot auth",
   event = "InsertEnter",
   opts = {
+    model = "claude-3.7",
+    agent = "copilot",
     suggestion = {
       enabled = true,         -- turn on inline suggestions
       auto_trigger = true,    -- show suggestions as you type

@@ -58,12 +58,21 @@ return {
 				lualine_b = { "branch", "diff" },
 				lualine_c = { "filename" },
 				lualine_x = {
-					lsp_clients,
-					lint_providers,
-					format_providers,
+					{
+						function()
+							local sections = { lint_providers(), lsp_clients(), format_providers() }
+							local idx = vim.g.lualine_section_idx or 1
+							vim.g.lualine_section_idx = (idx % #sections) + 1
+							return sections[idx]
+						end,
+						icon = "", -- Custom icon for the scroll section
+					},
+					"gitsigns",
+					"diagnostics",
 					clock,
 					"filetype",
 				},
+
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
