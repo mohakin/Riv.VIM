@@ -1,7 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	event = 'UIEnter',
-    --event = "UIEnter",
+	event = 'VeryLazy',
 	opts = function()
 		-- Clock
 		local function clock()
@@ -50,8 +49,8 @@ return {
 		return {
 			options = {
 				theme = "auto",
-				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
+				component_separators = { left = '', right = '' },
+				section_separators = { left = '', right = '' },
 			},
 			sections = {
 				lualine_a = { "mode" },
@@ -65,7 +64,7 @@ return {
 							vim.g.lualine_section_idx = (idx % #sections) + 1
 							return sections[idx]
 						end,
-						icon = "", -- Custom icon for the scroll section
+						icon = "", -- Custom icon for the scroll section
 					},
 					"gitsigns",
 					"diagnostics",

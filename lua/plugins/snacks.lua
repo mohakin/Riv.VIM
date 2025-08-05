@@ -25,19 +25,19 @@ return {
         
 ]],
         keys = {
-          { icon = "", key = "f", desc = " ̲find file", action = ":lua Snacks.dashboard.pick('files')" },
-          { icon = "", key = "n", desc = " ̲new file", action = ":ene | startinsert" },
-          { icon = "", key = "g", desc = " ̲grep text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-          { icon = "", key = "r", desc = " ̲recent file", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+          { icon = "", key = "f", desc = "(f)ind file", action = ":lua Snacks.dashboard.pick('files')" },
+          { icon = "", key = "n", desc = "(n)ew file", action = ":ene | startinsert" },
+          { icon = "", key = "g", desc = "(g)rep text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+          { icon = "", key = "r", desc = "(r)ecent file", action = ":lua Snacks.dashboard.pick('oldfiles')" },
           {
             icon = "",
             key = "c",
-            desc = " ̲config",
+            desc = "(c)onfig",
             action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
           },
-          { icon = "", key = "s", desc = " ̲session", section = "session" },
-          { icon = "💤", key = "L", desc = " ̲Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
-          { icon = "", key = "q", desc = " ̲quit", action = ":qa" },
+          { icon = "", key = "s", desc = "(s)ession", section = "session" },
+          { icon = "💤", key = "L", desc = "(L)azy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+          { icon = "", key = "q", desc = "(q)uit", action = ":qa" },
         },
       },
       formats = {

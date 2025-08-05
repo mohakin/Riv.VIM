@@ -1,13 +1,29 @@
 return {
   {
     "mfussenegger/nvim-dap",
-    dependencies = {
-      "nvim-neotest/nvim-nio",
-      "rcarriga/nvim-dap-ui",
-      "mfussenegger/nvim-dap-python",
-      "theHamsta/nvim-dap-virtual-text",
+    keys = {
+          { "<leader>db", mode = "n" },
+          { "<leader>dc", mode = "n" },
+          { "<leader>do", mode = "n" },
+          { "<leader>di", mode = "n" },
+          { "<leader>dO", mode = "n" },
+          { "<leader>dq", mode = "n" },
+          { "<leader>du", mode = "n" },
     },
-    event = "VeryLazy",
+    dependencies = {
+      { "nvim-neotest/nvim-nio", 
+        lazy = true,
+      },
+      { "rcarriga/nvim-dap-ui",
+        lazy = true,
+      },
+      { "mfussenegger/nvim-dap-python", 
+        lazy = true,
+      },
+      { "theHamsta/nvim-dap-virtual-text", 
+        lazy = true,
+      },
+    },
     config = function()
       local dap        = require("dap")
       local dapui      = require("dapui")

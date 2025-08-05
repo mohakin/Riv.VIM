@@ -31,7 +31,7 @@ vim.opt.scrolloff = 10 -- Allows you to see a specific amount of lines below whe
 vim.opt.showmode = false -- Status line takes care of this, this will give back one free line -> Don't spend it all in one place
 vim.opt.inccommand = "split" -- preview substitutions as you write! (TJ-- what in the hell?)
 vim.opt.cmdheight = 0 -- Oops... this is actually what saves you the line but still you don't need to see mode line twice!
-
+vim.opt.winborder = "rounded" -- This is supposed to give windows borders... still looking into this
 
 -- Hilight text for some time after yanking
 local yank_group = vim.api.nvim_create_augroup("YankHighlight", {
