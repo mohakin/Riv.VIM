@@ -7,36 +7,42 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
-			require("mason").setup({
-				ui = {
-					icons = {
-						package_installed = "✓",
-						package_pending = "➜",
-						package_uninstalled = "✗",
-					},
-				},
-			})
-
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
 					"gopls",
 					"pylsp",
 					"yamlls",
+					"rust_analyzer",
 				},
 			})
 
-			local lspconfig = require("lspconfig")
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- Use default capabilities (cmp_nvim_lsp disabled)
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+			-- Configure LSP servers using the new vim.lsp.config API (Neovim 0.11+)
 			local servers = require("mason-lspconfig").get_installed_servers()
 			for _, server_name in ipairs(servers) do
-				lspconfig[server_name].setup({
-					capabilities = capabilities, -- Uncomment if you use nvim-cmp
-					-- on_attach = function(client, bufnr) ... end, -- Add keymaps here
+				vim.lsp.config(server_name, {
+					capabilities = capabilities,
 				})
+				vim.lsp.enable(server_name)
 			end
+			
+			-- Rust-specific settings
+			vim.lsp.config("rust_analyzer", {
+				settings = {
+					["rust-analyzer"] = {
+						checkOnSave = {
+							command = "clippy",
+						},
+					},
+				},
+			})
+			vim.lsp.enable("rust_analyzer")
 
-			lspconfig.lua_ls.setup({
+			-- Lua-specific settings
+			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -45,6 +51,7 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable("lua_ls")
 		end,
 	},
 }

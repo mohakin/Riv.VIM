@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    enabled = false,  -- Disabled to practice without autocomplete
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
@@ -21,36 +22,12 @@ return {
               end,
             },
             mapping = cmp.mapping.preset.insert({
-              ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-              ['<C-f>'] = cmp.mapping.scroll_docs(4),
-              ['<C-Space>'] = cmp.mapping.complete(),
-              ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-
-              ["<Tab>"] = cmp.mapping(function(fallback)
-                -- If the completion menu is visible, select the next item
-                if cmp.visible() then
-                  cmp.select_next_item()
-                -- If a snippet is active, jump to the next placeholder
-                elseif luasnip.expand_or_jumpable() then
-                  luasnip.expand_or_jump()
-                -- Otherwise, do the fallback action (i.e., insert a tab)
-                else
-                  fallback()
-                end
-              end, { "i", "s" }),
-
-              ["<S-Tab>"] = cmp.mapping(function(fallback)
-                -- If the completion menu is visible, select the previous item
-                if cmp.visible() then
-                  cmp.select_prev_item()
-                -- If a snippet is active, jump to the previous placeholder
-                elseif luasnip.jumpable(-1) then
-                  luasnip.jump(-1)
-                -- Otherwise, do the fallback action
-                else
-                  fallback()
-                end
-              end, { "i", "s" }),
+              ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+              ["<C-f>"] = cmp.mapping.scroll_docs(4),
+              ["<C-Space>"] = cmp.mapping.complete(),
+              ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+              ["<C-n>"] = cmp.mapping.select_next_item(),
+              ["<C-p>"] = cmp.mapping.select_prev_item(),
             }),
             -- The order of sources determines their priority
             sources = cmp.config.sources({

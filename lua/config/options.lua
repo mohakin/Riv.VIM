@@ -33,6 +33,26 @@ vim.opt.inccommand = "split" -- preview substitutions as you write! (TJ-- what i
 vim.opt.cmdheight = 0 -- Oops... this is actually what saves you the line but still you don't need to see mode line twice!
 vim.opt.winborder = "rounded" -- This is supposed to give windows borders... still looking into this
 
+-- Transparency (applied after colorscheme loads)
+vim.opt.termguicolors = true
+vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = "*",
+    callback = function()
+        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+        vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+        vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+        vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+    end,
+})
+
+-- Performance optimizations
+vim.opt.lazyredraw = false       -- Don't redraw during macros
+vim.opt.updatetime = 100        -- Faster CursorHold (default 4000ms)
+vim.opt.timeoutlen = 300        -- Faster key sequence timeout
+vim.opt.ttimeoutlen = 10        -- Faster escape sequences
+vim.opt.ttyfast = true          -- Faster terminal connection
+
 -- Hilight text for some time after yanking
 local yank_group = vim.api.nvim_create_augroup("YankHighlight", {
 clear = true })
@@ -41,7 +61,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     group = yank_group,
     pattern = "*",
     callback = function ()
-        vim.highlight.on_yank()
+        -- Works with any Neovim version
+        local ok, _ = pcall(function()
+            if vim.hl and vim.hl.on_yank then
+                vim.hl.on_yank({ higroup = "IncSearch", timeout = 150 })
+            elseif vim.highlight and vim.highlight.on_yank then
+                vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
+            end
+        end)
     end,
     desc = "Highlight yank",
 })

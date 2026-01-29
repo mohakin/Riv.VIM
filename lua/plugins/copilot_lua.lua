@@ -1,5 +1,6 @@
 return {
   "zbirenbaum/copilot.lua",
+  enabled = false,  -- Disabled to practice without AI
   cmd = "Copilot",
   build = ":Copilot auth",
   event = "InsertEnter",
@@ -11,7 +12,7 @@ return {
       auto_trigger = true,    -- show suggestions as you type
       debounce = 75,          -- ms between requests
       keymap = {
-        accept  = "<Tab>",    -- accept suggestion
+        accept  = "<S-Tab>",  -- accept suggestion
         dismiss = "<S-c>",    -- decline suggestion
         next    = "<M-]>",    -- next suggestion (optional)
         prev    = "<M-[>",    -- prev suggestion (optional)
@@ -22,13 +23,10 @@ return {
       enabled = true,        -- disable the floating Copilot panel
     },
     filetypes = {
-      -- enable inline suggestions only in these filetypes (add as needed)
-      markdown = true,
-      help     = true,
-      python  = true,
-      go      = true,
-      rust    = true,
-      -- e.g. "python" = true, "javascript" = true, etc.
+      ["*"] = true,  -- enable for all filetypes
+      -- disable specific ones if needed:
+      -- gitcommit = false,
+      -- gitrebase = false,
     },
   },
 }

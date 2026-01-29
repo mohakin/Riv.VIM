@@ -7,7 +7,7 @@ return {
     bigfile = { enabled = true },
     dashboard = {
       enabled = true,
-      width = 18,
+      width = 60,
       preset = {
         header = [[
         
@@ -41,17 +41,44 @@ return {
         },
       },
       formats = {
-        key = { "" },
+        key = function(item)
+          return { { "", hl = "SnacksDashboardKey" } }  -- Hide right-side keys
+        end,
+        file = function(item, ctx)
+          local fname = vim.fn.fnamemodify(item.file, ":~")
+          local key = item.key or ""
+          if key ~= "" then
+            return { { key .. ".  ", hl = "SnacksDashboardKey" }, { fname, hl = "SnacksDashboardFile" } }
+          end
+          return { { fname, hl = "SnacksDashboardFile" } }
+        end,
+      },
+      sections = {
+        { section = "header" },
+        { section = "keys", gap = 1, padding = 1 },
+        { section = "recent_files", title = "Recent Files", limit = 6, padding = { 1, 0 }, indent = 0, cwd = true, autokeys = "1234567890" },
+        { section = "startup", padding = 1, indent = 0 },
       },
     },
-    explorer = { enabled = true },
+    explorer = {
+      enabled = true,
+      find = {
+        cmd = { "fd", "--type", "f", "--type", "d", "--hidden", "--exclude", ".git" },
+        cwd = vim.fn.getcwd(),
+      },
+    },
     indent = { enabled = true },
     input = { enabled = true },
     notifier = {
       enabled = true,
       timeout = 3000,
     },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      find = {
+        cmd = { "fd", "--type", "f", "--hidden", "--exclude", ".git" },
+      },
+    },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },

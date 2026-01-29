@@ -10,7 +10,8 @@ return {
         {
             "<leader>?",
             function()
-                require("which-key").show({ global = false })
+                -- Show global leader maps (your mappings in config/keybinds.lua are global)
+                require("which-key").show()
             end,
             desc = "Buffer Local Keymaps (which-key)",
         },
