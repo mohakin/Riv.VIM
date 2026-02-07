@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    enabled = false,  -- Disabled to practice without autocomplete
+    enabled = true,  -- Disabled to practice without autocomplete
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
