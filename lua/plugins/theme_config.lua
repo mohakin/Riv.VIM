@@ -11,44 +11,44 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    opts = { transparent_background = true },
+    -- opts = { transparent_background = true },
   },
   {
     "folke/tokyonight.nvim",
-    opts = { transparent = true },
+    -- opts = { transparent = true },
   },
   {
     "ellisonleao/gruvbox.nvim",
-    opts = { transparent_mode = true },
+    -- opts = { transparent_mode = true },
   },
   {
     "shaunsingh/nord.nvim",
     config = function()
-      vim.g.nord_disable_background = true
+      -- vim.g.nord_disable_background = true
     end,
   },
   {
     "Mofiqul/dracula.nvim",
     config = function()
-      require("dracula").setup({ transparent_bg = true })
+      -- require("dracula").setup({ transparent_bg = true })
     end,
   },
   {
     "navarasu/onedark.nvim",
-    opts = { transparent = true },
+    -- opts = { transparent = true },
   },
   {
     "rebelot/kanagawa.nvim",
-    opts = { transparent = true },
+    -- opts = { transparent = true },
   },
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    opts = { styles = { transparency = true } },
+    -- opts = { styles = { transparency = true } },
   },
   {
     "EdenEast/nightfox.nvim",
-    opts = { options = { transparent = true } },
+    -- opts = { options = { transparent = true } },
   },
 
   -- 2. Dependencies
@@ -85,16 +85,16 @@ return {
       local state_file = vim.fn.stdpath("state") .. "/last_colorscheme.txt"
 
       -- Persistent background transparency fix
-      local function apply_transparency()
-        local groups = {
-          "Normal", "NormalNC", "NormalFloat", "FloatBorder",
-          "SignColumn", "EndOfBuffer", "MsgArea", "StatusLine", 
-          "StatusLineNC", "WinSeparator", "TelescopeNormal", "TelescopeBorder"
-        }
-        for _, group in ipairs(groups) do
-          vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
-        end
-      end
+      -- local function apply_transparency()
+      --   local groups = {
+      --     "Normal", "NormalNC", "NormalFloat", "FloatBorder",
+      --     "SignColumn", "EndOfBuffer", "MsgArea", "StatusLine", 
+      --     "StatusLineNC", "WinSeparator", "TelescopeNormal", "TelescopeBorder"
+      --   }
+      --   for _, group in ipairs(groups) do
+      --     vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
+      --   end
+      -- end
 
       -- Auto-save theme and re-apply transparency on change
       vim.api.nvim_create_autocmd("ColorScheme", {
@@ -103,7 +103,7 @@ return {
           if name and name ~= "" then
             pcall(vim.fn.writefile, { name }, state_file)
           end
-          apply_transparency()
+          -- apply_transparency()
         end,
       })
 
@@ -113,7 +113,7 @@ return {
           local ok, lines = pcall(vim.fn.readfile, state_file)
           local last = (ok and lines[1]) and lines[1]:gsub("%s+$", "") or "oasis-twilight"
           pcall(vim.cmd.colorscheme, last)
-          apply_transparency() -- Force it one last time on boot
+          -- apply_transparency() -- Force it one last time on boot
         end,
       })
     end,
