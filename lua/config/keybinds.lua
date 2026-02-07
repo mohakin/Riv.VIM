@@ -6,6 +6,9 @@ vim.keymap.set("n", "<leader>rb", "<cmd>e<CR>", {desc = "Reload buffer"})
 vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Outdent" })
 vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent" })
 
+-- Rename Keybind
+vim.keymap.set("n", "<leader>rn", ":IncRename ", { desc = "Incremental Rename" })
+
 -- Oil keybinds for file management
 vim.keymap.set("n", "-", "<cmd>Oil --float<CR>", {desc = "Opens Parent Dir In Oil"})
 
